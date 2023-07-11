@@ -1,6 +1,6 @@
 # File-Integrity-with-Powershell-Script
 This PowerShell script creates the hashes of files in any folder and also maintains the integrity of files by monitoring changes like copying, deleting, changes in files, etc.
-The location of files and folder have to be manually added in the script 
+**The location of files and folders have to be manually added in the script **
 
 ![Screenshot 2023-07-11 090754](https://github.com/Deepak-Yadav-01/File-Integrity-with-Powershell-Script/assets/84767894/a1f44879-f154-4366-bf9b-dc5c0b31ff0d)
 
