@@ -1,4 +1,5 @@
-﻿
+#add your baseline file location
+#add your folder location﻿
 Write-Host ""
 Write-Host "what would you like to do?"
 Write-Host ""
@@ -15,11 +16,11 @@ Function Calculate-File-Hash($filepath){
 }
 
 Function Erase-Baseline-IF-Exists() {
-$baselineExists=Test-Path -Path C:\Users\Deepak\Desktop\files\baseline.txt
+$baselineExists=Test-Path -Path C:\Users\Deepak\Desktop\files\baseline.txt #add your baseline file location
 
     if($baselineExists){
         #Delete it
-        Remove-Item -Path  C:\Users\Deepak\Desktop\files\baseline.txt
+        Remove-Item -Path  C:\Users\Deepak\Desktop\files\baseline.txt #add your baseline file location
     }
 
 }
@@ -44,23 +45,24 @@ if ($response -eq "A".ToUpper()){
 elseif ($response -eq "B".ToUpper()){
     $fileHashDictionary=@{}
     #Load filehash from baseline.txt and store them in a dictionary
-    $filePathAndHashes =Get-Content -Path  C:\Users\Deepak\Desktop\files\baseline.txt
+    $filePathAndHashes =Get-Content -Path  C:\Users\Deepak\Desktop\files\baseline.txt #add your baseline file location
     foreach ($f in $filePathAndHashes){
          $fileHashDictionary.add($f.Split("|")[0],$f.Split("|")[1])
     }
     #Begin Monitoring files with saved Baseline
     while($true){
         Start-Sleep -Seconds 1
-        $files = Get-ChildItem -Path C:\Users\Deepak\Desktop\files\new
+        $files = Get-ChildItem -Path C:\Users\Deepak\Desktop\files\new #add your folder file location
 
-    #For file, calculate the hash and write to baseline.txt
+
+    #For the file, calculate the hash and write to baseline.txt
     foreach ($f in $files){
         $hash=Calculate-File-Hash $f.FullName
         #"$($hash.Path)|$($hash.Hash)" | Out-File -FilePath  C:\Users\Deepak\Desktop\files\baseline.txt -Append
         
-        #Notify if a new file hash been created
+        #Notify if a new file hash has been created
         if($fileHashDictionary[$hash.Path] -eq $null){
-            # A file has been created ! Notify the user
+            # A file has been created! Notify the user
             Write-Host "$($hash.Path) has been created!" -ForegroundColor Green
         }else{
             if($fileHashDictionary[$hash.Path] -eq $hash.Hash){
